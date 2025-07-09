@@ -171,7 +171,7 @@ def plot_adsorption_comparison(data, comparison_type, fixed_params, varying_para
 
 # Example usage
 if __name__ == "__main__":
-    data_dir = os.path.join(".", "polymer_adsorption", "branched", "sim5")
+    data_dir = os.path.join("..", "data", "polymer_adsorption", "branched", "sim5")
     adsorption_data = load_polymer_adsorption_data(data_dir)
 
     fixed_params = {
