@@ -65,7 +65,8 @@ def get_data_for_params(data, params):
 
 def plot_velocity_comparison(data, comparison_type, fixed_params, varying_params,
                              velocity_types: list = ['v_axi', 'v_rad'],
-                             save_dir="../plot/droplet_velocity", max_time=600):
+                             save_dir="../plot/droplet_velocity", max_time=600,
+                             time_ranges: dict = None):
     for vel_type in velocity_types:
         fig, ax = plt.subplots(figsize=(10, 6))
 
