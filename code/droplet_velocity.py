@@ -126,7 +126,35 @@ def plot_velocity_comparison(data, comparison_type, fixed_params, varying_params
                     mask = (dataset['Time'] >= t_min) & (dataset['Time'] <= t_max)
                     line, = plt.plot(dataset['Time'][mask], dataset[vel_type][mask], label=f'wgh={wgh}', linewidth=2)
                     data_lines.append(line)
-            title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, bl_nb={fixed_params['bl_nb']}, v={fixed_params['v']}, pw={fixed_params['pw']}"
+                title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, bl_nb={fixed_params['bl_nb']}, v={fixed_params['v']}, pw={fixed_params['pw']}"
+
+                # Inset for v_axi
+                if vel_type == 'v_axi':
+                    inset_ax = inset_axes(ax, width=3, height=2, loc='center', bbox_to_anchor=(0.33, 0.72),
+                                          bbox_transform=ax.transAxes)
+                    for line in data_lines:
+                        inset_ax.plot(line.get_xdata(), line.get_ydata(),
+                                      color=line.get_color(), linewidth=2)  # Match colors
+                    inset_ax.set_xlim(25, 50)  # Updated x range
+                    inset_ax.set_ylim(0, 100)  # Updated y range
+                    inset_ax.set_xticks(range(25, 51, 5))  # Ticks every 5 from 25 to 50
+                    inset_ax.set_yticks(range(0, 101, 20))  # Ticks every 20 from 0 to 100
+                    inset_ax.tick_params(axis='both', labelsize=10)
+
+                    # Background shading for inset
+                    inset_ax.axvspan(25, 46, color='lightblue', alpha=0.3)  # Spreading (adjusted to fit 25-50)
+                    inset_ax.axvspan(46, 50, color='gold', alpha=0.3)  # Retraction (adjusted to fit 25-50)
+
+                    # Add zoom indicator: rectangle and connection lines
+                    rect = plt.Rectangle((25, 0), 25, 100, fill=False, edgecolor='black',
+                                         linestyle='--')  # Width = 50-25, height = 100-0
+                    ax.add_patch(rect)
+                    con1 = ConnectionPatch(xyA=(50, 100), xyB=(50, 0), coordsA="data", coordsB="data",
+                                           axesA=ax, axesB=inset_ax, color="black", linestyle='--')
+                    con2 = ConnectionPatch(xyA=(25, 100), xyB=(25, 0), coordsA="data", coordsB="data",
+                                           axesA=ax, axesB=inset_ax, color="black", linestyle='--')
+                    ax.add_artist(con1)
+                    ax.add_artist(con2)
 
         # Labels and formatting
         plt.xlabel("Time", fontsize=16)
