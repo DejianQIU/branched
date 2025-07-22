@@ -104,7 +104,7 @@ def plot_velocity_comparison(data, comparison_type, fixed_params, varying_params
                 if dataset is not None and vel_type in dataset:
                     line, = plt.plot(dataset['Time'], dataset[vel_type], label=f'wgh={wgh}', linewidth=2)
                     data_lines.append(line)
-            title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, bl_nb={fixed_params['bl_nb']}, v={fixed_params['v']}"
+            title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, bl_nb={fixed_params['bl_nb']}, v={fixed_params['v']}, pw={fixed_params['pw']}"
 
         # Labels and formatting
         plt.xlabel("Time", fontsize=16)
