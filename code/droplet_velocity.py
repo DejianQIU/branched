@@ -199,5 +199,10 @@ if __name__ == "__main__":
     }
     #varying_wgh = ['000', '222', '242', '262', '282']
     varying_pw = ['10', '30', '60', '90', '120', '150', '200']
+    new_range1= {
+        '10': (0, 150),  # pw=10, plot t=0 to t=100
+        '30': (0, 150),  # pw=30, plot t=0 to t=100
+        # Others use default max_time (600)
+    }
 
     plot_velocity_comparison(velocity_data, 'pw', fixed_params, varying_pw)
