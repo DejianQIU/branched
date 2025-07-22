@@ -135,7 +135,7 @@ def plot_velocity_comparison(data, comparison_type, fixed_params, varying_params
 
 # Example usage
 if __name__ == "__main__":
-    data_dir = os.path.join(".", "droplet_velocity", "branched")
+    data_dir = os.path.join("..", "data", "droplet_velocity", "branched")
     velocity_data = load_velocity_data(data_dir)
 
     fixed_params = {
