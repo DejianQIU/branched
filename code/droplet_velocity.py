@@ -102,7 +102,13 @@ def plot_velocity_comparison(data, comparison_type, fixed_params, varying_params
                 params['pw'] = pw
                 dataset = get_data_for_params(data, params)
                 if dataset is not None and vel_type in dataset:
-                    line, = plt.plot(dataset['Time'], dataset[vel_type], label=f'pw={pw}', linewidth=2)
+                    # Apply time range filter if specified
+                    t_min = 0
+                    t_max = max_time
+                    if time_ranges and pw in time_ranges:
+                        t_min, t_max = time_ranges[pw]
+                    mask = (dataset['Time'] >= t_min) & (dataset['Time'] <= t_max)
+                    line, = plt.plot(dataset['Time'][mask], dataset[vel_type][mask], label=f'pw={pw}', linewidth=2)
                     data_lines.append(line)
             title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, bl_nb={fixed_params['bl_nb']}, v={fixed_params['v']}, wgh={fixed_params['wgh']}"
 
