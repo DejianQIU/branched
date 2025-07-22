@@ -205,4 +205,4 @@ if __name__ == "__main__":
         # Others use default max_time (600)
     }
 
-    plot_velocity_comparison(velocity_data, 'pw', fixed_params, varying_pw)
+    plot_velocity_comparison(velocity_data, 'pw', fixed_params, varying_pw, time_ranges=new_range1)
