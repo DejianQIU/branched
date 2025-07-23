@@ -169,6 +169,78 @@ def plot_adsorption_comparison(data, comparison_type, fixed_params, varying_para
         #print(f"Figure saved as {filename}")
         plt.close()
 
+        # Plot for fraction types
+        for frac_type in fraction_types:
+            fig, ax = plt.subplots(figsize=(10, 6))
+
+            # Background shading for stages
+            spreading = plt.axvspan(0, 46, color='lightblue', alpha=0.3, label='Spreading')
+            retracting = plt.axvspan(46, 100, color='gold', alpha=0.3, label='Retraction')
+            hopping = plt.axvspan(100, 300, color='lightcoral', alpha=0.3, label='Hopping')
+            shaded_regions = [spreading, retracting, hopping]
+
+            data_lines = []
+
+            if comparison_type == 'bl_nb':
+                for bl_nb in varying_params:
+                    params = fixed_params.copy()
+                    params['bl_nb'] = bl_nb
+                    dataset = get_data_for_params(data, params)
+                    if dataset is not None and frac_type in dataset:
+                        line, = plt.plot(dataset['Time'], dataset[frac_type], label=f'bl_nb={bl_nb}', linewidth=2)
+                        data_lines.append(line)
+                title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, v={fixed_params['v']}, wgh={fixed_params['wgh']}"
+
+            elif comparison_type == 'pw':
+                for pw in varying_params:
+                    params = fixed_params.copy()
+                    params['pw'] = pw
+                    dataset = get_data_for_params(data, params)
+                    if dataset is not None and frac_type in dataset:
+                        line, = plt.plot(dataset['Time'], dataset[frac_type], label=f'pw={pw}', linewidth=2)
+                        data_lines.append(line)
+                title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, bl_nb={fixed_params['bl_nb']}, v={fixed_params['v']}, wgh={fixed_params['wgh']}"
+
+            elif comparison_type == 'wgh':
+                for wgh in varying_params:
+                    params = fixed_params.copy()
+                    params['wgh'] = wgh
+                    dataset = get_data_for_params(data, params)
+                    if dataset is not None and frac_type in dataset:
+                        line, = plt.plot(dataset['Time'], dataset[frac_type], label=f'wgh={wgh}', linewidth=2)
+                        data_lines.append(line)
+                title = f"xp={fixed_params['xp']}, Np={fixed_params['Np']}, mcl={fixed_params['mcl']}, bl_nb={fixed_params['bl_nb']}, v={fixed_params['v']}, pw={fixed_params['pw']}"
+
+            # Labels and ticks
+            plt.xlabel("Time", fontsize=16)
+            plt.ylabel(f"Fraction of Adsorbed Beads ({frac_type})", fontsize=16)
+            plt.xticks(range(0, 601, 50), fontsize=14)
+            plt.yticks(np.arange(0, 1.1, 0.1), fontsize=14)  # Fractions are between 0 and 1
+            plt.tick_params(axis='both', which='both', top=True, right=True, direction='in')
+            plt.xlim(0, max_time)
+            plt.ylim(0, 1)
+            plt.title(f"{title}\nFraction Type: {frac_type}")
+
+            # Legends
+            leg1 = ax.legend(data_lines, [l.get_label() for l in data_lines], loc='upper right',
+                             bbox_to_anchor=(1.0, 1.0), frameon=False, title='Surface Type')
+            ax.add_artist(leg1)
+            ax.legend(shaded_regions, ['Spreading', 'Retracting', 'Hopping'], loc='upper right',
+                      bbox_to_anchor=(0.85, 1.0), frameon=False, title='Time Regions')
+
+            # Save figure
+            plt.tight_layout()
+            filename_parts = [f"frac_{comparison_type}_{frac_type}"]
+            for key, value in fixed_params.items():
+                if key != comparison_type:
+                    filename_parts.append(f"{key}{value}")
+            filename = "_".join(filename_parts) + ".png"
+
+            os.makedirs(save_dir, exist_ok=True)
+            plt.savefig(os.path.join(save_dir, filename), dpi=300, bbox_inches='tight')
+            #print(f"Figure saved as {filename}")
+            plt.close()
+
 # Example usage
 if __name__ == "__main__":
     data_dir = os.path.join("..", "data", "polymer_adsorption", "branched", "sim5")
