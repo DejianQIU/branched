@@ -66,6 +66,7 @@ def get_data_for_params(data, params):
 
 def plot_adsorption_comparison(data, comparison_type, fixed_params, varying_params,
                                adsorption_types: list = ['n_ads_surface', 'n_ads_top', 'n_ads_sides', 'n_ads_edges'],
+                               fraction_types: list = ['frac_surface', 'frac_top', 'frac_sides', 'frac_edges'],
                                save_dir="../plot/polymer_adsorption", max_time=600):
 
     for ads_type in adsorption_types:
