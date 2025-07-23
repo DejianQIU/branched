@@ -115,8 +115,8 @@ def plot_adsorption_comparison(data, comparison_type, fixed_params, varying_para
         plt.xticks(range(0, 601, 50), fontsize=14)  # x-ticks every 50 steps
         plt.yticks(fontsize=14)
         plt.tick_params(axis='both', which='both', top=True, right=True, direction='in')
-        # Custom y-ticks based on adsorption type
-        if ads_type == 'n_ads_edges':
+        # Custom y-ticks based on the adsorption type
+        if ads_type == 'frac_edges':
             plt.yticks(range(0, 901, 100))
         elif ads_type == 'n_ads_surface':
             plt.yticks(range(0, 1801, 200))
