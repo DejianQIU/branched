@@ -21,17 +21,17 @@ Ap_w = [10, 30, 60, 90, 120, 150, 200]
 
 # Define deposition points as (r, A_p/w) pairs
 deposition_points = [
-    (r[1], Ap_w[3]), (r[1], Ap_w[2]), (r[1], Ap_w[1]),
+    (r[0], Ap_w[1]), (r[0], Ap_w[2]), (r[0], Ap_w[3]), (r[0], Ap_w[4]),
+    (r[1], Ap_w[1]), (r[1], Ap_w[2]), (r[1], Ap_w[3]), (r[1], Ap_w[4]),
     (r[2], Ap_w[2]), (r[2], Ap_w[3]),
     (r[3], Ap_w[2]), (r[3], Ap_w[3]),
-    (r[4], Ap_w[2]),
-    (r[0], Ap_w[1]), (r[0], Ap_w[2]), (r[0], Ap_w[3]), (r[0], Ap_w[4])
+    (r[4], Ap_w[2])
 ]
 
 # Define rebound with satellite droplet points
 satellite_points = [
-    (r[1], Ap_w[6]),
-    (r[2], Ap_w[1])
+    #(r[2], Ap_w[5]), (r[2], Ap_w[6]),
+    #(r[3], Ap_w[4]), (r[3], Ap_w[5]), (r[3], Ap_w[6])
 ]
 
 # Create all possible data points
@@ -94,8 +94,8 @@ for i, x_val in enumerate(control_x):
     ax_upper = plt.axes([0.15, 0.35 - 0.04 * i, 0.3, 0.03], facecolor=axcolor)
     ax_lower = plt.axes([0.6, 0.35 - 0.04 * i, 0.3, 0.03], facecolor=axcolor)
 
-    slider_upper = Slider(ax_upper, f'Upper r={x_val:.2f}', 0, 200, valinit=initial_upper_y[i])
-    slider_lower = Slider(ax_lower, f'Lower r={x_val:.2f}', 0, 200, valinit=initial_lower_y[i])
+    slider_upper = Slider(ax_upper, f'Upper r={x_val:.2f}', 0, 210, valinit=initial_upper_y[i])
+    slider_lower = Slider(ax_lower, f'Lower r={x_val:.2f}', 0, 210, valinit=initial_lower_y[i])
 
     upper_sliders.append(slider_upper)
     lower_sliders.append(slider_lower)
@@ -174,7 +174,7 @@ def save(event):
     export_ax.set_yticks(Ap_w)
     export_ax.set_yticklabels([str(y) for y in Ap_w], fontsize=16)
 
-    export_fig.savefig('impact_result_custom_trend.png', dpi=300, bbox_inches='tight')
+    export_fig.savefig('../impact_result_custom_trend.png', dpi=300, bbox_inches='tight')
     print("Plot saved as 'impact_result_custom_trend.png'")
     plt.close(export_fig)
 
