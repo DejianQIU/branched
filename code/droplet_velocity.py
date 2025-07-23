@@ -202,6 +202,9 @@ if __name__ == "__main__":
     new_range1= {
         '10': (0, 150),  # pw=10, plot t=0 to t=100
         '30': (0, 150),  # pw=30, plot t=0 to t=100
+        '120': (0, 150),  # pw=30, plot t=0 to t=100
+        '150': (0, 150),  # pw=30, plot t=0 to t=100
+        '200': (0, 150),  # pw=30, plot t=0 to t=100
         # Others use default max_time (600)
     }
 
