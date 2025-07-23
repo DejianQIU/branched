@@ -166,7 +166,7 @@ def plot_adsorption_comparison(data, comparison_type, fixed_params, varying_para
 
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, filename), dpi=300, bbox_inches='tight')
-        print(f"Figure saved as {filename}")
+        #print(f"Figure saved as {filename}")
         plt.close()
 
 # Example usage
