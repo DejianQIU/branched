@@ -25,7 +25,7 @@ deposition_points = [
     (r[1], Ap_w[1]), (r[1], Ap_w[2]), (r[1], Ap_w[3]), (r[1], Ap_w[4]),
     (r[2], Ap_w[2]), (r[2], Ap_w[3]),
     (r[3], Ap_w[2]), (r[3], Ap_w[3]),
-    (r[4], Ap_w[2])
+    (r[4], Ap_w[2]), (r[4], Ap_w[3])
 ]
 
 # Define rebound with satellite droplet points
