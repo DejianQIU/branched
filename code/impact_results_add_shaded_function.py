@@ -21,7 +21,7 @@ Ap_w = [10, 30, 60, 90, 120, 150, 200]
 
 # Define deposition points as (r, A_p/w) pairs
 deposition_points = [
-    (r[0], Ap_w[1]), (r[0], Ap_w[2]), (r[0], Ap_w[3]), (r[0], Ap_w[4]),
+    (r[0], Ap_w[1]), (r[0], Ap_w[2]), (r[0], Ap_w[3]), (r[0], Ap_w[5]), (r[0], Ap_w[6]),
     (r[1], Ap_w[1]), (r[1], Ap_w[2]), (r[1], Ap_w[3]), (r[1], Ap_w[4]),
     (r[2], Ap_w[2]), (r[2], Ap_w[3]),
     (r[3], Ap_w[2]), (r[3], Ap_w[3]),
