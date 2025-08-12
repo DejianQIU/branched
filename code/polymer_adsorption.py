@@ -256,7 +256,7 @@ if __name__ == "__main__":
         #'pw': '120',
         'wgh': '282',
     }
-    varying_wgh = ['000', '222', '242', '262', '282']
-    #varying_pw = ['10', '30', '60', '90', '120', '150', '200']
+    #varying_wgh = ['000', '222', '242', '262', '282']
+    varying_pw = ['10', '30', '60', '90', '120', '150', '200']
 
     plot_adsorption_comparison(adsorption_data, 'wgh', fixed_params, varying_wgh)
